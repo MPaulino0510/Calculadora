@@ -33,16 +33,17 @@ botoesDaOperacao.forEach(botao => {
     });
 });
 botaoIgual.addEventListener('click', () =>{
-    const valorDeAgora = parseFloat(numeros.value);
+    const valorDeAgora = parseFloat(numeros.value); // Pega o valor obtido e transforma em float (casa decimais)
 
-    if(valorUm === null || operacaoSendoRealizada === null || isNaN(valorDeAgora)) return;
+    if(valorUm === null || operacaoSendoRealizada === null || isNaN(valorDeAgora)) return; // Se estiver alguma casa vazia ele não retorna nada
 
-    const valorDois = valorDeAgora;
+    const valorDois = valorDeAgora; // Pega o segundo valor
     const resultado = calculadora(valorUm, valorDois, operacaoSendoRealizada);
-
+    // Transforma em uma variável
     numeros.value = resultado;
+    // Chama a variável obtida para aparecer na tela acima 
 
-    valorUm = null;
+    valorUm = null; // Volta a deixar os valores em vazio
     operacaoSendoRealizada = null;
 })
 
