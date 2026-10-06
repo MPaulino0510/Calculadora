@@ -35,12 +35,13 @@ botoesDaOperacao.forEach(botao => {
 botaoIgual.addEventListener('click', () =>{
     const valorDeAgora = parseFloat(numeros.value); // Pega o valor obtido e transforma em float (casa decimais)
 
-    if(valorUm === null || operacaoSendoRealizada === null || isNaN(valorDeAgora)) return; // Se estiver alguma casa vazia ele não retorna nada
+    if(valorUm === null || operacaoSendoRealizada === null || isNaN(valorDeAgora)) return alert("Preencha o campo corretamente!"); // Se estiver alguma casa vazia ele retorna um alert para o site determinado
 
     const valorDois = valorDeAgora; // Pega o segundo valor
     const resultado = calculadora(valorUm, valorDois, operacaoSendoRealizada);
     // Transforma em uma variável
     numeros.value = resultado;
+
     // Chama a variável obtida para aparecer na tela acima 
 
     valorUm = null; // Volta a deixar os valores em vazio
