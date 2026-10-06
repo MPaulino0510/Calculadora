@@ -1,7 +1,9 @@
 const numeros = document.getElementById('numeros');
 // Pega os números digitados no input
-const botoesDaOperacao = document.querySelectorAll('.caixas button');
+const botoesDaOperacao = document.querySelectorAll('.caixas button:not(#botaoIgual)');
 // Pega qual caixa o usuário clicou primeiro
+const botaoIgual = document.getElementById('botaoIgual')
+
 
 let valorUm = null; // Deixa essa variável vazia onde vai ficar armazenado o primeiro valor
 let operacaoSendoRealizada = null;
@@ -27,24 +29,25 @@ botoesDaOperacao.forEach(botao => {
             numeros.value = '';
             // Define valor vazio para os numeros novamente
 
-        } else{
-            const valorDois = valorDeAgora;
-            // Pega o segundo valor (de forma indireta, ainda usando a variável que transforma em float)
-
-            const resultado = calculadora(valorUm, valorDois, operacaoSendoRealizada);
-            // Auto explicativo: transforma numa variável o resultado do cálculo
-
-            numeros.value = resultado;
-            // Transforma o resultado, e aparece na tela qual foi o resultado
-            
-            valorUm = null; // Transforma tudo em null novamente para mais cálculos
-            operacaoSendoRealizada = null;
         }
-    })
+    });
+});
+botaoIgual.addEventListener('click', () =>{
+    const valorDeAgora = parseFloat(numeros.value);
+
+    if(valorUm === null || operacaoSendoRealizada === null || isNaN(valorDeAgora)) return;
+
+    const valorDois = valorDeAgora;
+    const resultado = calculadora(valorUm, valorDois, operacaoSendoRealizada);
+
+    numeros.value = resultado;
+
+    valorUm = null;
+    operacaoSendoRealizada = null;
 })
 
 
-// Funcão basica das operações de cada valor
+// Funcão básica das operações de cada número
 function calculadora(numero1, numero2, operacao){
     switch (operacao){
         case '+':
